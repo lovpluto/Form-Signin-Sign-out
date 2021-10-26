@@ -1,0 +1,88 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+}
+.base{
+    width: 400px;
+    height: auto;
+    background-color:rgb(255, 255, 255);
+    box-shadow: 0 0 500px #5a5c5f;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.header-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.sub-header{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: rgb(128, 128, 128, .6);
+}
+
+.title-fix{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.password-repeact,
+.password,
+.email,
+.fullName{
+    padding: 0 14px;
+    font-weight: 600;
+    color: rgb(95, 95, 95);
+}
+
+.inputText{
+    height: 28px;
+    padding-left: 14px;
+    margin-top: 6px;
+    border-radius: 8px;
+    outline: none;
+    border-color: rgb(168, 168, 168, .3);
+    box-shadow: 1px 1px 2px #535353;
+}
+
+.password-repeact__input:focus,
+.password__input:focus,
+.email__input:focus,
+.fullName__input:focus{
+    border-top-width: 3px;
+    border-top-color: rgb(164, 255, 255);
+}
+
+.btn-reg{
+    margin: 10px 14px ;
+    padding: 12px;
+    outline: none;
+    border: none;
+    background-color: rgb(56, 190, 190);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.error{
+    margin-top: 5px;
+    color: red;
+    font-size: 11px;
+}
+
+.active{
+    display: block;
+}
+
+.btn-reg a{
+    text-decoration: none;
+    color: #fff;
+}
