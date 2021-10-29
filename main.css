@@ -1,47 +1,75 @@
 *{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 .base{
     width: 400px;
     height: auto;
-    background-color:rgb(255, 255, 255);
+    background:linear-gradient(45deg, #46A7B8 50%, #1D6B87 100%); ;
     box-shadow: 0 0 500px #5a5c5f;
     display: flex;
     flex-direction: column;
     margin: 10px;
+    border-radius: 5px;
+    
 }
 
 .header-main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color:#F4EDDC ;
 }
 
 .header{
     margin-top: 40px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .sub-header{
     margin-top: 20px;
     margin-bottom: 40px;
-    color: rgb(128, 128, 128, .6);
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
 }
 
 .title-fix{
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
-}
-
-.password-repeact,
-.password,
-.email,
-.fullName{
     padding: 0 14px;
     font-weight: 600;
-    color: rgb(95, 95, 95);
+    color: #fff;
+    position: relative;
+}
+
+/* .title-fix i{
+    position: absolute;
+    top: 38px;
+    color: rgb(37, 244, 37);
+    left: 360px;
+    font-size: 17px;
+} */
+.invalid i{
+    position: absolute;
+    top: 38px;
+    color: rgb(244, 86, 37);
+    left: 360px;
+    font-size: 17px;
+}
+
+i{
+    position: absolute;
+    top: 38px;
+    color: rgb(78, 244, 37);
+    left: 360px;
+    font-size: 17px;
+    z-index: 999;
+}
+
+.disblock{
+    display: block !important;
 }
 
 .inputText{
@@ -50,16 +78,28 @@
     margin-top: 6px;
     border-radius: 8px;
     outline: none;
-    border-color: rgb(168, 168, 168, .3);
+    border-width: 3px;
+    border-color: rgb(156, 156, 156);
+    border-style:solid;
     box-shadow: 1px 1px 2px #535353;
 }
 
-.password-repeact__input:focus,
-.password__input:focus,
-.email__input:focus,
-.fullName__input:focus{
-    border-top-width: 3px;
-    border-top-color: rgb(164, 255, 255);
+.invalid .inputText{
+    border-color:rgb(244, 86, 37);
+}
+
+.success .inputText{
+    border-color: rgb(78, 244, 37);
+}
+
+.inputText:hover{
+    border-color: #1E6A87;
+}
+
+.inputText:focus{
+    border-width: 3px 2px;
+    border-color: #1E6A87 0;
+
 }
 
 .btn-reg{
@@ -72,9 +112,14 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.btn-reg:hover{
+    background-color: rgb(62, 211, 211);;
+}
+
 .error{
     margin-top: 5px;
-    color: red;
+    color: rgb(244, 86, 37);
     font-size: 11px;
 }
 
@@ -86,3 +131,25 @@
     text-decoration: none;
     color: #fff;
 }
+
+.icon__success{
+    position: relative;
+    bottom: 26.5px;
+    right: -340px;
+    color: chartreuse;
+    font-size: 18px;
+}
+
+.icon__wrong{
+    position: relative;
+    bottom: 26.5px;
+    right: -340px;
+    color: rgb(244, 86, 37);
+    font-size: 18px;
+    display: none;
+}
+
+.invalid .icon__wrong{
+    display: block;
+}
+

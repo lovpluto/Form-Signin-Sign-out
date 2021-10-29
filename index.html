@@ -4,45 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./main.css" type="text/css">
     <title>Bài tập Đăng ký</title>
 </head>
 <body>
-    <div >
+    <div class="baseMain">
         <form action="" method="POST" class="form base" id='form'>
-        <div class="header-main">
-            <span class="header">Đăng ký thành viên</span>
-            <span class="sub-header">Tạo tài khoản RAKGame để có trải nghiệm hoàn hảo</span>
-        </div>        
+            <div class="header-main">
+                <span class="header">Đăng ký thành viên</span>
+                <span class="sub-header">Tạo tài khoản RAKGame để có trải nghiệm hoàn hảo</span>
+            </div>        
 
-        <div class="fullName title-fix">
-            <span class="fullName__title title" >Tên đầy đủ</span>
-            <input type="text" id="fullName" class="fullName__input inputText" placeholder="VD: Tien Dạt">
-            <span class="error"></span>
-        </div>
+            <div class="fullName title-fix ">
+                <span class="fullName__title title" >Tên đầy đủ</span>
+                <input type="text" id="fullName" class="fullName__input inputText" placeholder="VD: Tien Dạt">
+                <!-- <i class="far fa-times-circle"></i> -->
+                <span class="error"></span>
+            </div>
 
-        <div class="email title-fix">
-            <span class="email__title title" >Email</span>
-            <input type="email" id="email" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com">
-            <span class="error"></span>
-        </div>
+            <div class="email title-fix ">
+                <span class="email__title title" >Email</span>
+                <input type="email" id="email" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com">
+                <span class="error"></span>
+            </div>
 
-        <div class="password title-fix">
-            <span class="password__title title" >Mật khẩu</span>
-            <input type="password" id="password" class="password__input inputText" placeholder="Nhập mật khẩu ">
-            <span class="error"></span>
-        </div>
+            <div class="password title-fix">
+                <span class="password__title title" >Mật khẩu</span>
+                <input type="password" id="password" class="password__input inputText" placeholder="Nhập mật khẩu " name="password" autocomplete="on">
+                <span class="error"></span>
+            </div>
 
-        <div class="password-repeact title-fix">
-            <span class="password-repeact__title title" >Nhập lại mật khẩu </span>
-            <input type="password" id="password-repeact" class="password-repeact__input inputText" placeholder="Nhập lại mật khẩu">
-            <span class="error"></span>
-        </div>
-        
-        <button class="btn btn-reg" >Đăng ký</button>
+            <div class="password-repeact title-fix">
+                <span class="password-repeact__title title" >Nhập lại mật khẩu </span>
+                <input type="password" id="password-repeact" class="password-repeact__input inputText" placeholder="Nhập lại mật khẩu" autocomplete="on" name="password">
+                <span class="error"></span>
+            </div>
+            
+            <button class="btn btn-reg">Đăng ký</button>
         </form>
     </div>
-    <script src="validator.js"></script>
+    <script src="/validator.js"></script>
+    <script src="/CreatCustom.js"></script>
+    <script>
+        customs({
+            form: '#form',
+            className: [
+                {
+                    classDiv: 'name',
+                    classSpan: 'name__title',
+                    inputType: 'text',
+                    inputId:'name',
+                    placeholder: 'VD: Tien Dạt'
+                }
+            ]
+        })
+    </script>
     <script>
         validator({
             form : '#form',
@@ -51,12 +69,13 @@
                 validator.isRequired('#fullName', ' Vui lòng nhập tên đầy đủ'),
                 validator.isRequired('#password', ' Vui lòng nhập mật khẩu'),
                 validator.isRequired('#password-repeact', ' Nhập lại mật khẩu'),
+                validator.isRequired('#email', ' Vui lòng nhập Email '),
                 validator.isEmail('#email', ' Email của bạn không hợp lệ'),
-                validator.isMinlength('#fullName', 8, 'Tên có ít nhất 8 kí tự'),
-                validator.isMinlength('#password', 6),
+                validator.isMinlength('#fullName', 8, 'Tên'),
+                validator.isMinlength('#password', 6, 'Mật khẩu'),
                 validator.isConfirmed('#password-repeact', function(){
                     return document.querySelector('#form #password').value;
-                })
+                }, 'Mật khẩu')
             ],
             onSubmit: function (data){
                 console.log(data)
