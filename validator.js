@@ -39,10 +39,21 @@ var validator = function(customs){
     })
     formSelector.onsubmit = function(event){
         event.preventDefault();
+        
         customs.rules.forEach( rule => {
             var inputSelector = document.querySelector(rule.selector)  
             changeError(inputSelector, rule)   
         })
+            var name = document.querySelector('input[name="name"]').value
+            var email = document.querySelector('input[name="email"]').value
+            var password = document.querySelector('input[name="password"]').value
+
+            var form = {
+                name: name,
+                email: email,
+                password: password
+            }
+            postAcount(form)
     }
 
 }
@@ -83,4 +94,21 @@ validator.isConfirmed = function(selector, cb, name){
         }
     }
 }
+
+let courseApi = 'http://localhost:3000/account'
+
+function postAcount(data){
+    var options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          }, 
+        body: JSON.stringify(data)
+    }
+    fetch(courseApi, options)
+        // .then( function(response){
+        //     response.json();
+        // })
+}
+
 

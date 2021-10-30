@@ -10,7 +10,7 @@
     <title>Bài tập Đăng ký</title>
 </head>
 <body>
-    <div class="baseMain">
+    <div class="baseMain singin">
         <form action="" method="POST" class="form base" id='form'>
             <div class="header-main">
                 <span class="header">Đăng ký thành viên</span>
@@ -19,14 +19,14 @@
 
             <div class="fullName title-fix ">
                 <span class="fullName__title title" >Tên đầy đủ</span>
-                <input type="text" id="fullName" class="fullName__input inputText" placeholder="VD: Tien Dạt">
+                <input type="text" id="fullName" class="fullName__input inputText" placeholder="VD: Tien Dạt" name="name">
                 <!-- <i class="far fa-times-circle"></i> -->
                 <span class="error"></span>
             </div>
 
             <div class="email title-fix ">
                 <span class="email__title title" >Email</span>
-                <input type="email" id="email" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com">
+                <input type="email" id="email" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com" name="email">
                 <span class="error"></span>
             </div>
 
@@ -44,29 +44,34 @@
             
             <button class="btn btn-reg">Đăng ký</button>
         </form>
+
+        <div class="baseMain login">
+            <form action="" method="GET" class="form base" id='form-1'>
+                <div class="header-main">
+                    <span class="header">Đăng nhập thành viên</span>
+                    <span class="sub-header"> RAKGame trải nghiệm hoàn hảo</span>
+                </div>  
+                <div class="email title-fix ">
+                    <span class="email__title title" >Email</span>
+                    <input type="email" id="email" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com" name="email">
+                    <span class="error"></span>
+                </div>
+                <div class="password title-fix">
+                    <span class="password__title title" >Mật khẩu</span>
+                    <input type="password" id="password" class="password__input inputText" placeholder="Nhập mật khẩu " name="password" autocomplete="on">
+                    <span class="error"></span>
+                </div>
+                <button class="btn btn-signin">Đăng Nhập</button>
+            </form>
+        </div>
     </div>
     <script src="./validator.js"></script>
-    <script src="./CreatCustom.js"></script>
-    <!-- <script>
-        customs({
-            form: '#form',
-            className: [
-                {
-                    classDiv: 'name',
-                    classSpan: 'name__title',
-                    inputType: 'text',
-                    inputId:'name',
-                    placeholder: 'VD: Tien Dạt'
-                }
-            ]
-        })
-    </script> -->
+    <script src="./signin.js"></script>
     <script>
         validator({
             form : '#form',
             errorSelector: '.error',
             rules: [
-                validator.isRequired('#fullName', ' Vui lòng nhập tên đầy đủ'),
                 validator.isRequired('#password', ' Vui lòng nhập mật khẩu'),
                 validator.isRequired('#password-repeact', ' Nhập lại mật khẩu'),
                 validator.isRequired('#email', ' Vui lòng nhập Email '),
@@ -76,6 +81,17 @@
                 validator.isConfirmed('#password-repeact', function(){
                     return document.querySelector('#form #password').value;
                 }, 'Mật khẩu')
+            ],
+            onSubmit: function (data){
+                console.log(data)
+            }
+        });
+        signin({
+            form : '#form-1',
+            rules: [
+                validator.isRequired('.password__input', ' Vui lòng nhập mật khẩu'),
+                validator.isRequired('.email__input', ' Vui lòng nhập Email '),
+                validator.isEmail('.email__input', ' Email của bạn không hợp lệ'),
             ],
             onSubmit: function (data){
                 console.log(data)
