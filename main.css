@@ -153,3 +153,23 @@ i{
     display: block;
 }
 
+.login{
+    position: absolute;
+    top: 0px;
+    left: 500px;
+}
+
+.btn-signin{
+    margin: 10px 14px ;
+    padding: 12px;
+    outline: none;
+    border: none;
+    background-color: rgb(56, 190, 190);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-signin:hover{
+    background-color: rgb(62, 211, 211);;
+}
