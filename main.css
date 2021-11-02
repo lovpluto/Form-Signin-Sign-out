@@ -4,7 +4,7 @@
 .base{
     width: 400px;
     height: auto;
-    background:linear-gradient(45deg, #46A7B8 50%, #1D6B87 100%); ;
+    background:linear-gradient(45deg, #46A7B8 50%, #1D6B87 100%); 
     box-shadow: 0 0 500px #5a5c5f;
     display: flex;
     flex-direction: column;
@@ -78,7 +78,7 @@ i{
     margin-top: 6px;
     border-radius: 8px;
     outline: none;
-    border-width: 3px;
+    border-width: 1px;
     border-color: rgb(156, 156, 156);
     border-style:solid;
     box-shadow: 1px 1px 2px #535353;
@@ -97,7 +97,7 @@ i{
 }
 
 .inputText:focus{
-    border-width: 3px 2px;
+    border-width: 1px 1px;
     border-color: #1E6A87 0;
 
 }
@@ -172,4 +172,10 @@ i{
 
 .btn-signin:hover{
     background-color: rgb(62, 211, 211);;
+}
+
+#error-login{
+    font-size: 18px;
+    font-weight: 700;
+    margin: auto;
 }
