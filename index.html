@@ -51,14 +51,15 @@
                     <span class="header">Đăng nhập thành viên</span>
                     <span class="sub-header"> RAKGame trải nghiệm hoàn hảo</span>
                 </div>  
+                <span id="error-login" class="error"></span>
                 <div class="email title-fix ">
                     <span class="email__title title" >Email</span>
-                    <input type="email" id="email" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com" name="email">
+                    <input type="email" id="email-login" class="email__input inputText" placeholder="VD: tiendatmema@gmail.com" name="email">
                     <span class="error"></span>
                 </div>
                 <div class="password title-fix">
                     <span class="password__title title" >Mật khẩu</span>
-                    <input type="password" id="password" class="password__input inputText" placeholder="Nhập mật khẩu " name="password" autocomplete="on">
+                    <input type="password" id="password-login" class="password__input inputText" placeholder="Nhập mật khẩu " name="password" autocomplete="on">
                     <span class="error"></span>
                 </div>
                 <button class="btn btn-signin">Đăng Nhập</button>
@@ -68,14 +69,22 @@
     <script src="./validator.js"></script>
     <script src="./signin.js"></script>
     <script>
+        function getAcount(cb) {
+            fetch(courseApi)
+                .then(function(reponse){
+                    return reponse.json()
+                })
+                .then(cb)
+        };
         validator({
             form : '#form',
             errorSelector: '.error',
             rules: [
-                validator.isRequired('#password', ' Vui lòng nhập mật khẩu'),
-                validator.isRequired('#password-repeact', ' Nhập lại mật khẩu'),
-                validator.isRequired('#email', ' Vui lòng nhập Email '),
-                validator.isEmail('#email', ' Email của bạn không hợp lệ'),
+                validator.isRequired('#fullName', 'Vui lòng nhập Tên'),
+                validator.isRequired('#password-repeact', 'Vui lòng nhập mật khẩu'),
+                validator.isRequired('#password', 'Vui lòng nhập mật khẩu'),
+                validator.isRequired('#email', 'Vui lòng nhập Email '),
+                validator.isEmail('#email', 'Email của bạn không hợp lệ'),
                 validator.isMinlength('#fullName', 8, 'Tên'),
                 validator.isMinlength('#password', 6, 'Mật khẩu'),
                 validator.isConfirmed('#password-repeact', function(){
@@ -88,10 +97,15 @@
         });
         signin({
             form : '#form-1',
+            email: '#email-login',
+            password: '#password-login',
             rules: [
-                validator.isRequired('.password__input', ' Vui lòng nhập mật khẩu'),
-                validator.isRequired('.email__input', ' Vui lòng nhập Email '),
-                validator.isEmail('.email__input', ' Email của bạn không hợp lệ'),
+                validator.isRequired('#password-login', ' Vui lòng nhập mật khẩu'),
+                validator.isRequired('#email-login', ' Vui lòng nhập Email '),
+                validator.isEmail('#email-login', ' Email của bạn không hợp lệ'),
+                // validator.isConfirmed('#password-login', function(){
+                //     return document.querySelector('#form-1 #password').value;
+                // }, 'Mật khẩu')
             ],
             onSubmit: function (data){
                 console.log(data)

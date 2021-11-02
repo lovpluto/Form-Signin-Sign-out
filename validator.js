@@ -1,13 +1,15 @@
 // Khai báo Validator 
 var validator = function(customs){
-    let group = {};
     
+    let group = {};
+    let error ;
+
     let formSelector = document.querySelector(customs.form);
 
-    
     let changeError = function(change, rule){
         for (var i of group[rule.selector]){
-            if (i(change.value)){
+            error = i(change.value);
+            if (error){
                 change.parentElement.querySelector('.error').innerText = i(change.value);
                 change.parentElement.classList.add('invalid')
                 change.parentElement.classList.remove('success')
@@ -18,6 +20,7 @@ var validator = function(customs){
                 change.parentElement.classList.add('success') 
             }
         }
+        return !!error
     };
     
     customs.rules.forEach( rule => {
@@ -27,6 +30,7 @@ var validator = function(customs){
             }else{
                 group[rule.selector] = [rule.test]
         };
+        
 
         inputSelector.onblur = function(){
             changeError(inputSelector, rule)
@@ -39,11 +43,29 @@ var validator = function(customs){
     })
     formSelector.onsubmit = function(event){
         event.preventDefault();
-        
+        var emailValid;
         customs.rules.forEach( rule => {
             var inputSelector = document.querySelector(rule.selector)  
-            changeError(inputSelector, rule)   
-        })
+            changeError(inputSelector, rule)
+            getAcount(function(courses){
+                for (var i in courses){
+                if(courses[i].email == inputSelector.parentElement.parentElement.querySelector('#email').value){
+                    inputSelector.parentElement.parentElement.querySelector('.email .error').innerText = 'Email đã tồn tại'
+                    inputSelector.parentElement.parentElement.querySelector('.email').classList.add('invalid')
+                    inputSelector.parentElement.parentElement.querySelector('.email').classList.remove('success')
+                    emailValid = true;
+                    break;
+                }
+                }
+            })
+            })
+            if (!!error && !emailValid){
+                customs.rules.forEach( rule => {
+                    var inputSelector = document.querySelector(rule.selector)  
+                    changeError(inputSelector, rule)
+                })
+            }
+            else{
             var name = document.querySelector('input[name="name"]').value
             var email = document.querySelector('input[name="email"]').value
             var password = document.querySelector('input[name="password"]').value
@@ -54,8 +76,8 @@ var validator = function(customs){
                 password: password
             }
             postAcount(form)
-    }
-
+            }
+        }
 }
 // khai báo các rule 
 validator.isRequired = function(selector, message){    
@@ -90,7 +112,7 @@ validator.isConfirmed = function(selector, cb, name){
     return{
         selector : selector,
         test: function(value){
-           return value == cb() ? undefined : `${name} chưa chính xác`;
+           return value == cb() && value  ? undefined : `${name} chưa chính xác`;
         }
     }
 }
@@ -109,6 +131,13 @@ function postAcount(data){
         // .then( function(response){
         //     response.json();
         // })
-}
+};
 
+function getAcount(cb) {
+    fetch(courseApi)
+        .then(function(reponse){
+            return reponse.json()
+        })
+        .then(cb)
+};
 
